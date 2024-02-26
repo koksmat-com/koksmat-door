@@ -1,6 +1,8 @@
 ---
-title: koksmat-door
-description: Describe the main purpose of this kitchen
+title: Koksmat Door
+description: Entry point to the kitchens
 ---
 
-# koksmat-door
+# Koksmat Door
+
+Koksmat Door is based on the Caddy web server which protects all exposed services.

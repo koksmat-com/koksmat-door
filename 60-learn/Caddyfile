@@ -1,3 +1,14 @@
 localhost
+
+
+
+oauth identity provider azure {
+	realm azure
+	driver azure
+	client_id 840e455a-69af-47bb-b033-b3a316f1aff0
+	client_secret MnE~D8G5Dh_gWRq_jc3uJ8Q8wjBqBv.N3r
+	scopes openid email profile
+}
+
 root * /Users/nielsgregersjohansen/kitchens
 file_server browse
