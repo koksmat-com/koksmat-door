@@ -1,46 +1,51 @@
-{
-	security {
-		oauth identity provider azure {
-			realm azure
-			driver azure
-			client_id fda92a17-6762-449c-8fd9-b5489fa9547f
-			client_secret 7LV8Q~lESNVXV2hCHlA.If_zU0oA7v84ho37ycrN
-			scopes openid email profile
-		}
+# {
+# 	security {
+# 		oauth identity provider azure {
+# 			realm azure
+# 			driver azure
+# 			client_id fda92a17-6762-449c-8fd9-b5489fa9547f
+# 			client_secret 7LV8Q~lESNVXV2hCHlA.If_zU0oA7v84ho37ycrN
+# 			scopes openid email profile
+# 		}
 
-		authentication portal myportal {
-			crypto default token lifetime 3600
-			crypto key sign-verify 2sdfd1
-			cookie domain localhost
-			enable identity provider azure
-			ui {
-				links {
-					"My Website" "/" icon "las la-star"
-					"Users" "/users" icon "las la-star"
-					"Admins" "/admins" icon "las la-star"
-					"My Identity" "/whoami" icon "las la-user"
-				}
-			}
+# 		authentication portal myportal {
+# 			crypto default token lifetime 3600
+# 			crypto key sign-verify 2sdfd1
+# 			cookie domain localhost
+# 			enable identity provider azure
+# 			ui {
+# 				links {
+# 					"My Website" "/" icon "las la-star"
+# 					"Users" "/users" icon "las la-star"
+# 					"Admins" "/admins" icon "las la-star"
+# 					"My Identity" "/whoami" icon "las la-user"
+# 				}
+# 			}
 
-			transform user {
-				match realm azure
-				# match sub github.com/greenpau
-				action add role authp/user
-			}
-		}
-	}
-}
+# 			transform user {
+# 				match realm azure
+# 				# match sub github.com/greenpau
+# 				action add role authp/user
+# 			}
+# 		}
+# 	}
+# }
 
-localhost {
-	root * /Users/nielsgregersjohansen/kitchens
-	file_server browse
-	#authentication myportal
-}
+# localhost {
+# 	root * /Users/nielsgregersjohansen/kitchens
+# 	file_server browse
+# 	#authentication myportal
+# }
 
+# Magic Buttons
 localhost:1234 {
 	reverse_proxy /* 127.0.0.1:4321
 }
 
+# Profile app
+localhost:1235 {
+	reverse_proxy /* 127.0.0.1:4323
+}
 localhost:8081 {
 	respond "I am 8081"
 }

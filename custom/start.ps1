@@ -4,5 +4,11 @@ tag: start
 api: post
 ---
 #>
-set-location "$PSScriptRoot/../.koksmat/caddy/"
-./caddy run --watch
+if ((Split-Path -Leaf (Split-Path  -Parent -Path $PSScriptRoot)) -eq "sessions"){
+    Set-Location "$PSScriptRoot/../../caddy/"
+    ./caddy run --watch
+}
+else{
+    Set-Location "$PSScriptRoot/../.koksmat/caddy/"
+    ./caddy run --watch
+}
