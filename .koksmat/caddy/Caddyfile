@@ -37,14 +37,39 @@
 # 	#authentication myportal
 # }
 
-# Magic Buttons
+# Magic Buttons https://localhost:1234
 localhost:1234 {
 	reverse_proxy /* 127.0.0.1:4321
 }
 
-# Profile app
+# Profile app https://localhost:1235
 localhost:1235 {
 	reverse_proxy /* 127.0.0.1:4323
+}
+
+# Cava app https://localhost:1236
+localhost:1236 {
+	reverse_proxy /* 127.0.0.1:4325
+}
+
+# Guest app https://localhost:1237
+localhost:1237 {
+	reverse_proxy /* 127.0.0.1:4326
+}
+
+# Docusaurus app https://localhost:1238
+localhost:1238 {
+	reverse_proxy /* 127.0.0.1:3003
+}
+
+# 365adm app https://localhost:1239
+localhost:1239 {
+	reverse_proxy /* 127.0.0.1:4327
+}
+
+# 365adm app https://localhost:1240
+localhost:1240 {
+	reverse_proxy /* 127.0.0.1:4328
 }
 localhost:8081 {
 	respond "I am 8081"
