@@ -1,11 +1,12 @@
 <#---
-title: Run Caddy
-tag: caddy
+title: Show Caddyfile
+tag: show
 icon: magic.png
+api: post
 ---
 #>
 
-# Run Caddy
+# Show Caddyfile
 
 if ((Split-Path -Leaf (Split-Path  -Parent -Path $PSScriptRoot)) -eq "sessions"){
     $path = join-path $PSScriptRoot ".." ".."
@@ -17,8 +18,8 @@ else{
 
 $koksmatDir = Resolve-Path $path
 
-Set-Location (Join-Path $koksmatDir "caddy")
 
 
+ 
 
-./caddy run --watch 
+ Get-Content (Join-Path $koksmatDir "caddy" "Caddyfile")

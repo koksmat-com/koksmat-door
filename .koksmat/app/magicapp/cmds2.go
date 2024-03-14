@@ -6,6 +6,38 @@ import (
 )
 
 func RegisterCmds() {
+	magicCmd := &cobra.Command{
+		Use:   "magic",
+		Short: "Magic Buttons",
+		Long:  `Entry point to the kitchens`,
+	}
+	MagicCaddyPostCmd := &cobra.Command{
+		Use:   "caddy",
+		Short: "Run Caddy",
+		Long:  ``,
+		Run: func(cmd *cobra.Command, args []string) {
+			ctx := cmd.Context()
+
+			cmds.MagicCaddyPost(ctx, args)
+		},
+	}
+	magicCmd.AddCommand(MagicCaddyPostCmd)
+
+	RootCmd.AddCommand(magicCmd)
+	setupCmd := &cobra.Command{
+		Use:   "setup",
+		Short: "Setup",
+		Long:  `Entry point to the kitchens`,
+	}
+
+	RootCmd.AddCommand(setupCmd)
+	codeCmd := &cobra.Command{
+		Use:   "code",
+		Short: "Code",
+		Long:  `Entry point to the kitchens`,
+	}
+
+	RootCmd.AddCommand(codeCmd)
 	learnCmd := &cobra.Command{
 		Use:   "learn",
 		Short: "Learn",
@@ -13,40 +45,18 @@ func RegisterCmds() {
 	}
 
 	RootCmd.AddCommand(learnCmd)
-	devCmd := &cobra.Command{
-		Use:   "dev",
-		Short: "Dev",
+	provisionCmd := &cobra.Command{
+		Use:   "provision",
+		Short: "Provision",
 		Long:  `Entry point to the kitchens`,
 	}
-	DevCaddyPostCmd := &cobra.Command{
-		Use:   "caddy",
-		Short: "Caddy",
-		Long:  `Caddy is a powerful, enterprise-ready, open source web server with automatic HTTPS written in Go.`,
-		Run: func(cmd *cobra.Command, args []string) {
-			ctx := cmd.Context()
 
-			cmds.DevCaddyPost(ctx, args)
-		},
-	}
-	devCmd.AddCommand(DevCaddyPostCmd)
-
-	RootCmd.AddCommand(devCmd)
-	customCmd := &cobra.Command{
-		Use:   "custom",
-		Short: "Custom Caddy",
+	RootCmd.AddCommand(provisionCmd)
+	decommissionCmd := &cobra.Command{
+		Use:   "decommission",
+		Short: "Decommision",
 		Long:  `Entry point to the kitchens`,
 	}
-	CustomStartPostCmd := &cobra.Command{
-		Use:   "start",
-		Short: "Start",
-		Long:  ``,
-		Run: func(cmd *cobra.Command, args []string) {
-			ctx := cmd.Context()
 
-			cmds.CustomStartPost(ctx, args)
-		},
-	}
-	customCmd.AddCommand(CustomStartPostCmd)
-
-	RootCmd.AddCommand(customCmd)
+	RootCmd.AddCommand(decommissionCmd)
 }
