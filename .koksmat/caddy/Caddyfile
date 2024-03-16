@@ -92,6 +92,11 @@ localhost:1242 {
 localhost:1243 {
 	reverse_proxy /* 127.0.0.1:4331
 }
+
+# tools  https://localhost:1244
+localhost:1244 {
+	reverse_proxy /* 127.0.0.1:4332
+}
 # hooks sharepoint  https://localhost:2001
 localhost:2001 {
 	reverse_proxy /* 127.0.0.1:7001
