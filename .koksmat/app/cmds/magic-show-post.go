@@ -12,14 +12,16 @@ import (
 	"context"
 
 	"github.com/365admin/koksmat-door/execution"
+	"github.com/365admin/koksmat-door/utils"
 )
 
 func MagicShowPost(ctx context.Context, args []string) (*string, error) {
 
-	_, pwsherr := execution.ExecutePowerShell("john", "*", "koksmat-door", "00-magic", "20-showconfig.ps1", "")
+	result, pwsherr := execution.ExecutePowerShell("john", "*", "koksmat-door", "00-magic", "20-showconfig.ps1", "")
 	if pwsherr != nil {
 		return nil, pwsherr
 	}
+	utils.PrintSkip2FirstAnd2LastLines(string(result))
 	return nil, nil
 
 }

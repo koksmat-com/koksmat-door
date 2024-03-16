@@ -7,7 +7,7 @@ package endpoints
 import (
 	"net/http"
 
-	"github.com/go-chi/chi/v5"
+	chi "github.com/go-chi/chi/v5"
 	"github.com/swaggest/rest/nethttp"
 	"github.com/swaggest/rest/web"
 )
@@ -19,11 +19,11 @@ func AddEndpoints(s *web.Service, jwtAuth func(http.Handler) http.Handler) {
 			r.Use(jwtAuth, nethttp.HTTPBearerSecurityMiddleware(s.OpenAPICollector, "Bearer", "", ""))
 			//	r.Use(rateLimitByAppId(50))
 			//r.Method(http.MethodPost, "/", nethttp.NewHandler(ExchangeCreateRoomsPost()))
+			r.Method(http.MethodPost, "/health/ping", nethttp.NewHandler(HealthPingPost()))
 			r.Method(http.MethodPost, "/magic/caddy", nethttp.NewHandler(MagicCaddyPost()))
-r.Method(http.MethodPost, "/magic/show", nethttp.NewHandler(MagicShowPost()))
+			r.Method(http.MethodPost, "/magic/show", nethttp.NewHandler(MagicShowPost()))
 
 		})
 	})
 
 }
-

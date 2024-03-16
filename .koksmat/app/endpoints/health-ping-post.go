@@ -3,7 +3,7 @@
 // -------------------------------------------------------------------
 /*
 ---
-title: Caddy
+title: Ping
 ---
 */
 package endpoints
@@ -16,12 +16,13 @@ import (
 	"github.com/365admin/koksmat-door/execution"
 )
 
-func DevCaddyPost() usecase.Interactor {
+func HealthPingPost() usecase.Interactor {
 	type Request struct {
+		Pong string `query:"pong" binding:"required"`
 	}
 	u := usecase.NewInteractor(func(ctx context.Context, input Request, output *string) error {
 
-		_, err := execution.ExecutePowerShell("john", "*", "koksmat-door", "90-devsetup", "caddy.ps1", "")
+		_, err := execution.ExecutePowerShell("john", "*", "koksmat-door", "00-health", "10-ping.ps1", "", "-pong", input.Pong)
 		if err != nil {
 			return err
 		}
@@ -29,8 +30,8 @@ func DevCaddyPost() usecase.Interactor {
 		return err
 
 	})
-	u.SetTitle("Caddy")
+	u.SetTitle("Ping")
 	// u.SetExpectedErrors(status.InvalidArgument)
-	u.SetTags("Dev")
+	u.SetTags("Health")
 	return u
 }

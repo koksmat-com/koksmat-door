@@ -3,7 +3,7 @@
 // -------------------------------------------------------------------
 /*
 ---
-title: Run Caddy
+title: Ping
 ---
 */
 package cmds
@@ -15,9 +15,9 @@ import (
 	"github.com/365admin/koksmat-door/utils"
 )
 
-func MagicCaddyPost(ctx context.Context, args []string) (*string, error) {
+func HealthPingPost(ctx context.Context, args []string) (*string, error) {
 
-	result, pwsherr := execution.ExecutePowerShell("john", "*", "koksmat-door", "00-magic", "10-runcaddy.ps1", "")
+	result, pwsherr := execution.ExecutePowerShell("john", "*", "koksmat-door", "00-health", "10-ping.ps1", "", "-pong", args[0])
 	if pwsherr != nil {
 		return nil, pwsherr
 	}
