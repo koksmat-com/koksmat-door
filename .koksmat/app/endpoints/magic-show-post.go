@@ -3,7 +3,7 @@
 // -------------------------------------------------------------------
 /*
 ---
-title: Run Caddy
+title: Show Caddyfile
 ---
 */
 package endpoints
@@ -15,12 +15,12 @@ import (
 	"github.com/swaggest/usecase"
 )
 
-func MagicCaddyPost() usecase.Interactor {
+func MagicShowPost() usecase.Interactor {
 	type Request struct {
 	}
 	u := usecase.NewInteractor(func(ctx context.Context, input Request, output *string) error {
 
-		_, err := execution.ExecutePowerShell("john", "*", "koksmat-door", "00-magic", "10-runcaddy.ps1", "")
+		_, err := execution.ExecutePowerShell("john", "*", "koksmat-door", "00-magic", "20-showconfig.ps1", "")
 		if err != nil {
 			return err
 		}
@@ -28,7 +28,7 @@ func MagicCaddyPost() usecase.Interactor {
 		return err
 
 	})
-	u.SetTitle("Run Caddy")
+	u.SetTitle("Show Caddyfile")
 	// u.SetExpectedErrors(status.InvalidArgument)
 	u.SetTags("Magic Buttons")
 	return u

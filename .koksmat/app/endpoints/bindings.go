@@ -20,6 +20,7 @@ func AddEndpoints(s *web.Service, jwtAuth func(http.Handler) http.Handler) {
 			//	r.Use(rateLimitByAppId(50))
 			//r.Method(http.MethodPost, "/", nethttp.NewHandler(ExchangeCreateRoomsPost()))
 			r.Method(http.MethodPost, "/magic/caddy", nethttp.NewHandler(MagicCaddyPost()))
+r.Method(http.MethodPost, "/magic/show", nethttp.NewHandler(MagicShowPost()))
 
 		})
 	})

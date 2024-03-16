@@ -2,19 +2,23 @@ package magicapp
 
 import (
 	"github.com/365admin/koksmat-door/cmds"
+	"github.com/365admin/koksmat-door/utils"
 	"github.com/spf13/cobra"
 )
 
 func RegisterCmds() {
+	RootCmd.PersistentFlags().StringVarP(&utils.Output, "output", "o", "", "Output format (json, yaml, xml, etc.)")
+
 	magicCmd := &cobra.Command{
 		Use:   "magic",
 		Short: "Magic Buttons",
 		Long:  `Entry point to the kitchens`,
 	}
 	MagicCaddyPostCmd := &cobra.Command{
-		Use:   "caddy",
+		Use:   "caddy ",
 		Short: "Run Caddy",
 		Long:  ``,
+		Args:  cobra.MinimumNArgs(0),
 		Run: func(cmd *cobra.Command, args []string) {
 			ctx := cmd.Context()
 
@@ -22,6 +26,18 @@ func RegisterCmds() {
 		},
 	}
 	magicCmd.AddCommand(MagicCaddyPostCmd)
+	MagicShowPostCmd := &cobra.Command{
+		Use:   "show ",
+		Short: "Show Caddyfile",
+		Long:  ``,
+		Args:  cobra.MinimumNArgs(0),
+		Run: func(cmd *cobra.Command, args []string) {
+			ctx := cmd.Context()
+
+			cmds.MagicShowPost(ctx, args)
+		},
+	}
+	magicCmd.AddCommand(MagicShowPostCmd)
 
 	RootCmd.AddCommand(magicCmd)
 	setupCmd := &cobra.Command{
@@ -38,13 +54,6 @@ func RegisterCmds() {
 	}
 
 	RootCmd.AddCommand(codeCmd)
-	learnCmd := &cobra.Command{
-		Use:   "learn",
-		Short: "Learn",
-		Long:  `Entry point to the kitchens`,
-	}
-
-	RootCmd.AddCommand(learnCmd)
 	provisionCmd := &cobra.Command{
 		Use:   "provision",
 		Short: "Provision",
@@ -52,11 +61,4 @@ func RegisterCmds() {
 	}
 
 	RootCmd.AddCommand(provisionCmd)
-	decommissionCmd := &cobra.Command{
-		Use:   "decommission",
-		Short: "Decommision",
-		Long:  `Entry point to the kitchens`,
-	}
-
-	RootCmd.AddCommand(decommissionCmd)
 }
