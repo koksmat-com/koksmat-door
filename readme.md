@@ -20,7 +20,12 @@ The services is only need in a development enviroment where the purpose is to al
     └── ingress
 ```
 
-## Magic Buttons
+## Magic Buttons 
+To support you when developing this 2 links should be usefull
 
 [Start Caddy locally](./koksmat-door/station/00-magic/view/10-runcaddy.ps1)
 [Show Caddyfile](./koksmat-door/station/00-magic/view/20-showconfig.ps1)
+
+## Deployment
+
+Check [Provision](./koksmat-door/station/60-provision/view/20-install.ps1)
