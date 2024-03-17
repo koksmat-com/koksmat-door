@@ -58,6 +58,18 @@ func RegisterCmds() {
 		},
 	}
 	magicCmd.AddCommand(MagicShowPostCmd)
+	MagicMakePostCmd := &cobra.Command{
+		Use:   "make  test",
+		Short: "Make Caddyfile",
+		Long:  ``,
+		Args:  cobra.MinimumNArgs(1),
+		Run: func(cmd *cobra.Command, args []string) {
+			ctx := cmd.Context()
+
+			cmds.MagicMakePost(ctx, args)
+		},
+	}
+	magicCmd.AddCommand(MagicMakePostCmd)
 
 	RootCmd.AddCommand(magicCmd)
 	setupCmd := &cobra.Command{

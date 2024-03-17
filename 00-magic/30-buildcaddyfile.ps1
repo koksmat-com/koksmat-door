@@ -34,6 +34,7 @@ $caddyFileData = @"
 "@
 
 foreach ($mapicapp in $magicapps.apps) {
+  write-host "Adding $($mapicapp.name) to Caddyfile"
   $port = $mapicapp.port
   $testdata = ""
   if ($test) {

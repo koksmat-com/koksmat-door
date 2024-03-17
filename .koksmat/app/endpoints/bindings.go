@@ -22,6 +22,7 @@ func AddEndpoints(s *web.Service, jwtAuth func(http.Handler) http.Handler) {
 			r.Method(http.MethodPost, "/health/ping", nethttp.NewHandler(HealthPingPost()))
 			r.Method(http.MethodPost, "/magic/caddy", nethttp.NewHandler(MagicCaddyPost()))
 			r.Method(http.MethodPost, "/magic/show", nethttp.NewHandler(MagicShowPost()))
+			r.Method(http.MethodPost, "/magic/make", nethttp.NewHandler(MagicMakePost()))
 
 		})
 	})
