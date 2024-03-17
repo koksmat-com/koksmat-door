@@ -1,0 +1,106 @@
+# {
+# 	security {
+# 		oauth identity provider azure {
+# 			realm azure
+# 			driver azure
+# 			client_id fda92a17-6762-449c-8fd9-b5489fa9547f
+# 			client_secret 7LV8Q~lESNVXV2hCHlA.If_zU0oA7v84ho37ycrN
+# 			scopes openid email profile
+# 		}
+
+# 		authentication portal myportal {
+# 			crypto default token lifetime 3600
+# 			crypto key sign-verify 2sdfd1
+# 			cookie domain localhost
+# 			enable identity provider azure
+# 			ui {
+# 				links {
+# 					"My Website" "/" icon "las la-star"
+# 					"Users" "/users" icon "las la-star"
+# 					"Admins" "/admins" icon "las la-star"
+# 					"My Identity" "/whoami" icon "las la-user"
+# 				}
+# 			}
+
+# 			transform user {
+# 				match realm azure
+# 				# match sub github.com/greenpau
+# 				action add role authp/user
+# 			}
+# 		}
+# 	}
+# }
+
+# localhost {
+# 	root * /Users/nielsgregersjohansen/kitchens
+# 	file_server browse
+# 	#authentication myportal
+# }
+
+# Magic Buttons https://localhost:2234
+localhost:1234 {
+	# respond "I am 1234"
+	# reverse_proxy /* 127.0.0.1:4329
+	reverse_proxy /* 127.0.0.1:4321
+}
+
+localhost:1233 {
+	respond "I am 1233"
+	# reverse_proxy /* 127.0.0.1:4329
+	# reverse_proxy /* 127.0.0.1:4321
+}
+# Profile app https://localhost:1235
+localhost:1235 {
+	reverse_proxy /* 127.0.0.1:4323
+}
+
+# Cava app https://localhost:1236
+localhost:1236 {
+	reverse_proxy /* 127.0.0.1:4325
+}
+
+# Guest app https://localhost:1237
+localhost:1237 {
+	reverse_proxy /* 127.0.0.1:4326
+}
+
+# Docusaurus app https://localhost:1238
+localhost:1238 {
+	reverse_proxy /* 127.0.0.1:3003
+}
+
+# 365adm app https://localhost:1239
+localhost:1239 {
+	reverse_proxy /* 127.0.0.1:4327
+}
+
+# booking app https://localhost:1240
+localhost:1240 {
+	reverse_proxy /* 127.0.0.1:4328
+}
+# magicbutton sharepoint  https://localhost:1241
+localhost:1241 {
+	reverse_proxy /* 127.0.0.1:4329
+}
+
+# meeting-organizing  https://localhost:1242
+localhost:1242 {
+	reverse_proxy /* 127.0.0.1:4330
+}
+
+# meeting-servicing  https://localhost:1243
+localhost:1243 {
+	reverse_proxy /* 127.0.0.1:4331
+}
+
+# tools  https://localhost:1244
+localhost:1244 {
+	reverse_proxy /* 127.0.0.1:4332
+}
+# hooks sharepoint  https://localhost:2001
+localhost:2001 {
+	reverse_proxy /* 127.0.0.1:7001
+}
+localhost:8081 {
+	respond "I am 8081"
+}
