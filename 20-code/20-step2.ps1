@@ -1,7 +1,6 @@
-<#---
-title: Step 2
-tag: step2
----#>
+$a = "azure-users"
 
-# Step 2
 
+$xx = . $a "info ping" 
+
+write-host "x" $xx
